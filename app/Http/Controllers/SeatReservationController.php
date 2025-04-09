@@ -56,17 +56,29 @@ class SeatReservationController extends Controller
         'customer_name' => 'required|string|max:255',
     ]);
 
-    SeatReservation::create([
-        'schedule_id' => $request->schedule_id,
-        'seat_number' => $request->seat_number,
-        'customer_name' => $request->customer_name,
-        'dni' => $request->dni,
-        'phone' => $request->phone,
-        'user_id' => Auth::id(), // Asignar el ID del usuario autenticado
-    ]);
 
-   // $reservations = SeatReservation::with('schedule.project', 'schedule.bus')->get();
+    $validate= SeatReservation::where('schedule_id', $request->schedule_id)
+        ->where('seat_number', $request->seat_number)
+        ->first();
+    if ($validate) {
+     return   abort(500, 'El asiento ya ha sido reservado');
+    }
+    else{
+        SeatReservation::create([
+            'schedule_id' => $request->schedule_id,
+            'seat_number' => $request->seat_number,
+            'customer_name' => $request->customer_name,
+            'dni' => $request->dni,
+            'phone' => $request->phone,
+            'user_id' => Auth::id(), // Asignar el ID del usuario autenticado
+        ]);
+
+       // $reservations = SeatReservation::with('schedule.project', 'schedule.bus')->get();
+
+    }
+
     return $this->create();
+
 }
 
 
@@ -82,6 +94,8 @@ class SeatReservationController extends Controller
         $SeatReservation->customer_name = $request->customer_name;
         $SeatReservation->dni = $request->dni;
         $SeatReservation->phone = $request->phone;
+        $SeatReservation->user_id = Auth::id();
+
         $SeatReservation->save();
 
         return $this->create();

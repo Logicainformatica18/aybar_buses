@@ -77,7 +77,7 @@ Route::get('proyectos/{description}', [App\Http\Controllers\ProjectController::c
    Route::get('blog/topicPublic', [App\Http\Controllers\TopicPublicController::class, 'index']);
 
    Route::get('/', function () {
-    return view("production.2");
+    return redirect("login");
 });
 Route::get('/nosotros', function () {
     return view("production.3");

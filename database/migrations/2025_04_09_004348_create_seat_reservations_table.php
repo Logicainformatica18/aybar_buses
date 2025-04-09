@@ -12,11 +12,11 @@ return new class extends Migration {
     {
         Schema::create('seat_reservations', function (Blueprint $table) {
             $table->id();
+            $table->integer('seat_number');
 
             $table->bigInteger('schedule_id')->unsigned();
             $table->foreign('schedule_id')->references('id')->on('schedules');
 
-            $table->integer('seat_number')->unique();
             $table->string('customer_name');
             $table->string('dni')->nullable();
             $table->string('phone')->nullable();
