@@ -64,4 +64,10 @@ class ScheduleController extends Controller
 
         return $this->create();
     }
+    public function report(Request $request){
+        $Schedule = Schedule::with(['seatReservations','project', 'bus'])->where('schedules.id',"=",$request->schedule_id)->orderBy('id', 'DESC')->get();
+        $Projects = Project::all();
+        $Buses = Bus::all();
+        return view("Report.Report", compact("Schedule","Projects","Buses"));
+    }
 }

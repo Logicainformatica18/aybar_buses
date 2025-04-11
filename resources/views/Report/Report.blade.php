@@ -6,7 +6,7 @@
                 <div class="row align-items-center">
                     <div class="col-12">
                         <div class="d-sm-flex align-items-center justify-space-between">
-                            <h1 class="text-primary">Programación</h1>
+                            <h1 class="text-primary">Reporte</h1>
                             <nav aria-label="breadcrumb" class="ms-auto">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item d-flex align-items-center">
@@ -16,7 +16,7 @@
                                     </li>
                                     <li class="breadcrumb-item" aria-current="page">
                                         <span class="badge fw-medium fs-2 bg-primary-subtle text-primary">
-                                            Programación
+                                            Reporte
                                         </span>
                                     </li>
                                 </ol>
@@ -30,17 +30,17 @@
                 <div class="card">
                     <div class="card-body">
                         <p class="card-subtitle mb-3">
-                            <button type="button" class="btn mb-1 me-1 btn-success" data-bs-toggle="modal"
+                            {{-- <button type="button" class="btn mb-1 me-1 btn-success" data-bs-toggle="modal"
                                 data-bs-target="#success-header-modal" fdprocessedid="cw61t3"
-                                onclick="New(); $('#Schedule')[0].reset();">
-                                Add Schedule
-                            </button>
+                                onclick="New(); $('#Report')[0].reset();">
+                                Add Report
+                            </button> --}}
                         </p>
                         <div class="mb-2">
                             <h4 class="card-title mb-0">Export</h4>
                         </div>
                         <div class="table-responsive" id="mycontent">
-                            @include('Schedule.Scheduletable')
+                            @include('Report.Reporttable')
                         </div>
                     </div>
                 </div>
@@ -48,18 +48,18 @@
         </div>
     </div>
 
-    <!-- Modal for Create/Edit Schedule -->
+    <!-- Modal for Create/Edit Report -->
     <div id="success-header-modal" class="modal fade" tabindex="-1" aria-labelledby="success-header-modalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header modal-colored-header bg-success text-white">
-                    <h4 class="modal-title text-white" id="success-header-modalLabel">Schedule</h4>
+                    <h4 class="modal-title text-white" id="success-header-modalLabel">Report</h4>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" role="form" id="Schedule" name="Schedule"
+                    <form action="" method="post" role="form" id="Report" name="Report"
                         enctype="multipart/form-data">
                         <input type="hidden" name="id" id="id">
                         {{ csrf_field() }}
@@ -102,10 +102,10 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     @canany(['administrar', 'agregar'])
                         <input type="button" value="Save" class="btn bg-success-subtle text-success"
-                            onclick="ScheduleStore()" id="create">
+                            onclick="ReportStore()" id="create">
                     @endcanany
                     <input type="button" value="Update" class="btn bg-danger-subtle text-danger"
-                        onclick="ScheduleUpdate();" id="update">
+                        onclick="ReportUpdate();" id="update">
                 </div>
             </div>
         </div>
