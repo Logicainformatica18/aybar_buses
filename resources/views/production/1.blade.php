@@ -178,7 +178,7 @@
             </li>
 
         </ul>
-        <a href="../../login" class="btn  w-100 py-2 mt-2 text-white" style="background-color: #FFA726">Administrar</a>
+        <a href="../../admin" class="btn  w-100 py-2 mt-2 text-white" style="background-color: #FFA726">Administrar</a>
         <br>
         <a href="../../logout" class="btn  w-100 py-2 mt-2 text-white" style="background-color: #054E5C">Salir</a>
     </div>

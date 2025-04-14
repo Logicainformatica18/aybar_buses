@@ -111,7 +111,7 @@ class SeatReservationController extends Controller
             // Opcional: notificar por correo si email fue ingresado
             if ($request->filled('email')) {
                 Mail::to($request->email)
-                    ->bcc('logicainformatica18@gmail.com')
+                    ->bcc('luismiguelbermudez@aybarsac.com')
                     ->send(new \App\Mail\NewSeatReservationNotification($reservation));
             }
 
