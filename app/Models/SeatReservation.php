@@ -13,6 +13,8 @@ class SeatReservation extends Model
         'dni',
         'phone',
         'user_id',
+        'email',
+        'file'
     ];
 
     public function schedule()

@@ -338,7 +338,8 @@
                             enctype="multipart/form-data">
                             <input type="hidden" name="id" id="id">
                             {{ csrf_field() }}
-
+                            <span>*Todos los campos son obligatorios.</span>
+                            <p></p>
                             <input type="hidden" name="seat_number" id="seat_number">
                             <input type="hidden" name="schedule_id" id="schedule_id">
 
@@ -354,14 +355,36 @@
                                 <br>
                                 <label class="mt-2">Email:</label>
                                 <input type="email" name="email" id="email" class="form-control">
-                                <span>*Todos los campos son obligatorios.</span>
+                                <p></p>
+                                <div class="container align-content-center">
+                                    <div class="form-group row">
+                                        Fotografía
+
+
+
+                                        <input class="form-control" type="file" id="imgInp"
+                                            name="photo"onchange="readImage(this,'#blah');">
+
+
+
+                                    </div>
+                                    <div class="size-50">
+                                        <br>
+                                        <img id="blah" name="fotografia" src="https://placehold.co/150" alt="Tu imagen"
+                                            class="img-bordered" width="50%">
+                                    </div>
+                                </div>
+
+
+
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" id="save-btn" class="btn bg-success-subtle text-success" onclick="SeatReservationStore()">
+                            Guardar
+                        </button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <input type="button" value="Guardar" class="btn bg-success-subtle text-success"
-                            onclick="SeatReservationStore()">
                     </div>
                 </div>
             </div>
@@ -444,17 +467,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-            function SeatReservationStore() {
+function SeatReservationStore() {
     const form = document.getElementById("SeatReservation");
-    var formData = new FormData(form);
+    const saveBtn = document.getElementById("save-btn");
+
+    // Mostrar spinner
+    saveBtn.disabled = true;
+    saveBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Guardando...`;
+
+    const formData = new FormData(form);
 
     axios.post("../SeatReservationStorePublic", formData, {
         headers: {
             "Content-Type": "multipart/form-data"
         }
     }).then(function (response) {
-        console.log("✅ Reserva exitosa:", response.data);
         alert("✅ Registrado correctamente");
 
         if (lastClickedSeat) {
@@ -465,16 +492,14 @@ document.addEventListener("DOMContentLoaded", function () {
             lastClickedSeat = null;
         }
 
-        // Si quieres recargar mapa de asientos completo:
-        // renderSeatMaps();
-
-        // Cerrar modal si lo usas:
-        // bootstrap.Modal.getInstance(document.getElementById("success-header-modal")).hide();
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = `Guardar`;
 
     }).catch(function (error) {
-        console.error("❌ Error al guardar reserva:", error);
+        console.error("❌ Error:", error);
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = `Guardar`;
 
-        // Mostrar error personalizado si viene del backend
         if (error.response && error.response.status === 500) {
             alert("🚫 " + (error.response.data?.message || "El asiento ya ha sido reservado."));
         } else {
@@ -482,6 +507,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 }
+
+
 
 
             function ScheduleShow(id) {

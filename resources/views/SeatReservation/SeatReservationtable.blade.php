@@ -7,6 +7,7 @@
             <th>Asiento</th>
             <th>DNI</th>
             <th>Teléfono</th>
+            <th>Comprobante</th>
             <th>Proyecto</th>
             <th>Bus</th>
             <th>Fecha</th>
@@ -49,6 +50,7 @@
                 <td>{{ $SeatReservations->seat_number }}</td>
                 <td>{{ $SeatReservations->dni ?? '—' }}</td>
                 <td>{{ $SeatReservations->phone ?? '—' }}</td>
+                <td><a href="../resource/{{$SeatReservations->file}}" download="{{$SeatReservations->customer_name}}">{{$SeatReservations->file}}</a></td>
                 <td>{{ $SeatReservations->schedule->project->description ?? '—' }}</td>
                 <td>{{ $SeatReservations->schedule->bus->description ?? '—' }}</td>
                 <td>{{ $SeatReservations->schedule->date ?? '—' }}</td>

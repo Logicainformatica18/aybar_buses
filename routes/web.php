@@ -42,7 +42,7 @@ Route::post('ScheduleShow', [App\Http\Controllers\ScheduleController::class, 'sh
 
 Route::get('admin/reserva', [App\Http\Controllers\SeatReservationController::class, 'index'])->middleware('permission:administrar');
 Route::post('SeatReservationStore', [App\Http\Controllers\SeatReservationController::class, 'store'])->middleware('permission:administrar');
-Route::post('SeatReservationStorePublic', [App\Http\Controllers\SeatReservationController::class, 'storePublic'])->middleware('permission:administrar');
+Route::post('SeatReservationStorePublic', [App\Http\Controllers\SeatReservationController::class, 'storePublic'])->middleware('throttle:10,1440');
 Route::post('SeatReservationDestroy', [App\Http\Controllers\SeatReservationController::class, 'destroy'])->middleware('permission:administrar');
 Route::post('SeatReservationEdit', [App\Http\Controllers\SeatReservationController::class, 'edit'])->middleware('permission:administrar');
 Route::post('SeatReservationUpdate', [App\Http\Controllers\SeatReservationController::class, 'update'])->middleware('permission:administrar');
@@ -231,9 +231,12 @@ Route::post('socialMediaShare', [App\Http\Controllers\SocialMediaController::cla
 
 //
 
-
-Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout']);
-
+Route::get('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/');
+});
 
 Route::get('/auth/google', [\App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle']);
 

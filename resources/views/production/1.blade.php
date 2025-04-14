@@ -30,6 +30,7 @@
     <script src="{{ asset('js/Book.js') }}"></script>
     <script src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{ asset('js/topic.js') }}"></script>
+    <script src="{{ asset('js/function.js') }}"></script>
     <link href="{{ asset('css/template.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.2.0/build/css/intlTelInput.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">

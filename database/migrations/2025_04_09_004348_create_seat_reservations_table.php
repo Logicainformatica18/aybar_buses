@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->string('customer_name');
             $table->string('dni')->nullable();
             $table->string('phone')->nullable();
+            $table->string('file')->nullable();
 
             $table->bigInteger('user_id')->unsigned(); // who reserved the seat
             $table->foreign('user_id')->references('id')->on('users');
