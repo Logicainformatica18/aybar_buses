@@ -13,7 +13,7 @@
   <!-- Core Css -->
   <link rel="stylesheet" href="../assets/css/styles.css" />
 
-  <title>Aybar Corp</title>
+  <title>Nuevo Huaral</title>
 </head>
 
 <body>

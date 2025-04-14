@@ -6,7 +6,7 @@ use App\Models\Schedule;
 use App\Models\Project;
 use App\Models\Bus;
 use Illuminate\Http\Request;
-
+use App\Models\SeatReservation;
 class ScheduleController extends Controller
 {
     public function index()
@@ -25,6 +25,22 @@ class ScheduleController extends Controller
 
         return view("Schedule.Scheduletable", compact("Schedule", "Projects", "Buses"));
     }
+    public function showPublic(Request $request)
+    {
+        $selectedSchedule = Schedule::with(['bus', 'project'])->findOrFail($request->id);
+
+        // Obtener los asientos ya reservados como enteros
+        $reservedSeats = SeatReservation::where('schedule_id', $selectedSchedule->id)
+            ->pluck('seat_number')
+            ->map(fn($n) => (int)$n)
+            ->toArray();
+
+        return view('SeatReservation.SeatReservationClient', [
+            'selectedSchedule' => $selectedSchedule,
+            'reservedSeats' => $reservedSeats
+        ]);
+    }
+
 
     public function store(Request $request)
     {

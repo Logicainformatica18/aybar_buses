@@ -28,10 +28,10 @@
     }
 </style>
     <!-- INICIO SECCION -->
-<div class="py-1 position-relative bg-responsive" style=" 
+<div class="py-1 position-relative bg-responsive" style="
     background-position: center;
     background-repeat: no-repeat;
- 
+
     ">
  <div class="d-none d-sm-block text-center text-white position-absolute start-50 translate-middle" style="bottom:-13%;width:500px">
     <h4 class="p-2  text-center fs-6" style="font-family:Montserrat-SemiBold;letter-spacing:15px">
@@ -51,7 +51,7 @@
     <h4 class="p-2  text-center fs-3" style="font-family:Montserrat-SemiBold;letter-spacing:15px">
         <span style="color:#ffffff">¿QUIÉNES</span><br> SOMOS?
     </h4>
-    
+
     <div class="subrayado mx-auto "></div>
    <p class=" fs-2 mt-4" style="text-align: center">Somos una inmobiliaria completamente peruana,
     dedicada a la creación de proyectos
@@ -66,7 +66,7 @@
             <div class="card" style="box-shadow:none" data-aos="slide-up" data-aos-duration="1000" data-aos-delay="200">
                 <div class="text-center" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="200">
                     <img src="../resource/1738421604_679e356486d28vision.svg" class="" style="width:120px;" alt="Imagen 1">
-    
+
                 </div>
                 <div class="card-body text-center">
                   <h5 class="card-title pb-4" style="font-family: Montserrat-SemiBold;letter-spacing:10px;color:#03424E;margin-top:-20px;">VISIÓN</h5>
@@ -76,7 +76,7 @@
                     liderando en gestión y satisfaciendo a
                     nuestros clientes en sus inversiones
                     ideales.
-                  
+
                 </p></div>
               </div>
         </div>
@@ -85,29 +85,29 @@
             <div class="card" style="box-shadow:none" data-aos="slide-up" data-aos-duration="1000" data-aos-delay="200">
                 <div class="text-center" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="200">
                     <img src="../resource/1738421620_679e3574ddae2mision.svg" class="" style="width:120px;margin-left:30px" alt="Imagen 1">
-    
+
                 </div>
                 <div class="card-body text-center">
                   <h5 class="card-title pb-4" style="font-family: Montserrat-SemiBold;letter-spacing:10px;color:#03424E;margin-top:-20px;">MISIÓN</h5>
-                  <p class="card-text fs-4" style="text-align:justify;color:#03677a ">Somos una inmobiliaria que <b> ayuda a 
-                    los peruanos a obtener su propio 
+                  <p class="card-text fs-4" style="text-align:justify;color:#03677a ">Somos una inmobiliaria que <b> ayuda a
+                    los peruanos a obtener su propio
                     lote </b>con espacios de calidad y eco
                     sostenibles. Ofrecemos
                     asesoramiento integral para
                     satisfacer tus necesidades
                     inmobiliarias y maximizar tu
                     rentabilidad con integridad y empatía.</p>
-                  
+
                 </div>
               </div>
-           
+
         </div>
         <!-- Card 3 -->
         <div class="col-md-12 col-lg-4 col-12">
             <div class="card" style="box-shadow:none" data-aos="slide-up" data-aos-duration="1000" data-aos-delay="200">
                 <div class="text-center" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="200">
                     <img src="../resource/1738421610_679e356a803dfvalores.svg" class="" style="width:120px;" alt="Imagen 1">
-    
+
                 </div>
                 <div class="card-body text-center">
                   <h5 class="card-title pb-4" style="font-family: Montserrat-SemiBold;letter-spacing:10px;color:#03424E;margin-top:-20px;">MISIÓN</h5>
@@ -117,7 +117,7 @@
                     humano. Esto nos permite satisfacer
                     mejor las necesidades y deseos de
                     nuestros clientes.</p>
-                  
+
                 </div>
               </div>
         </div>
@@ -137,7 +137,7 @@
            <div class="slide">
             <iframe width="1000" height="515" src="https://www.youtube.com/embed/eJ3sHYjSyaU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
            </div>
-      
+
         </div>
     </div>
     </div>
@@ -147,10 +147,10 @@
         <img src="../../resource/1734547017_circulo.png" width="60%" style="padding:5%;" alt="" srcset="">
       </div>
       <div data-aos="flip-left" data-aos-delay="1000" data-aos-duration="1000">
-        <img src="../../resource/1738351411_679d2333ab35blogo%20aybar%20a%20color.svg" alt="Logo Aybar Corp" class="position-absolute start-50 translate-middle" style="width: 30%; margin-top:30%">
+        <img src="../../resource/1738351411_679d2333ab35blogo%20aybar%20a%20color.svg" alt="Logo Nuevo Huaral" class="position-absolute start-50 translate-middle" style="width: 30%; margin-top:30%">
       </div>
       <!-- Logo en el centro -->
-     
+
 
       <!-- Valores alrededor del círculo -->
       <div class="position-absolute text-end" style="top: 5%; left: -13%; width: 350px;">
@@ -190,7 +190,7 @@
          </p>
     </div>
 
-  
+
     <div class="position-absolute text-start" style="bottom: 35%; right: -13%; width: 350px;">
       <h4 class="fs-7 " style="color:#03424E;letter-spacing:1px">EMPATÍA</h4>
 
@@ -205,8 +205,8 @@
     </div>
 
       <div class="position-absolute text-center" style="bottom: 22%; left: 50%; transform: translateX(-50%); width: 350px;">
-        <h4 class="fs-7 " style="color:#03424E;letter-spacing:1px">COMPROMISO</h4>  
- 
+        <h4 class="fs-7 " style="color:#03424E;letter-spacing:1px">COMPROMISO</h4>
+
           <div class="mx-auto" style="width: 40px; height: 6px; background-color: #F4A623;margin-top:-5px"></div>
           <p class="small fs-3 mt-2" style="color:#03677a">Incentivar el logro de los objetivos
             de cada equipo   humano, apoyo y
@@ -217,7 +217,7 @@
 
   <div class="d-lg-none container text-center mt-5">
     <!-- Logo -->
-    <img src="../../resource/1738351411_679d2333ab35blogo%20aybar%20a%20color.svg" alt="Logo Aybar Corp" class="mb-4" style="width: 80px;">
+    <img src="../../resource/1738351411_679d2333ab35blogo%20aybar%20a%20color.svg" alt="Logo Nuevo Huaral" class="mb-4" style="width: 80px;">
 
     <!-- Primera fila (SOLIDARIDAD - RESPETO) -->
     <div class="row">
@@ -267,17 +267,17 @@
         <div class="col-md-12 mx-auto">
           <h4 class="fs-7 " style="color:#03424E;letter-spacing:1px">EMPATÍA</h4>
           <div class="mx-auto" style="width: 40px; height: 6px;margin-top:-8px; background-color: #F4A623;"></div>
-          <p class=" mt-2  text-justify fs-3" style="color:#03677a">Impulsar que cada miembro del 
-            equipo comprenda y conecte con el 
-            punto de <br> vista, las emociones y las 
-            necesidades del otro, para llegar a 
+          <p class=" mt-2  text-justify fs-3" style="color:#03677a">Impulsar que cada miembro del
+            equipo comprenda y conecte con el
+            punto de <br> vista, las emociones y las
+            necesidades del otro, para llegar a
             acuerdos efectivos <br> y mucho más
             humanos. </p>
         </div>
     </div>
 </div>
 <div data-aos="fade-up" data-aos-delay="300" data-aos-duration="500" class="py-4 " style="background-color:#f7f7f7">
-  
+
   <div class="container mb-5  text-center justify-content-center">
     <h4 class="d-sm-none text-center display-10" style="margin:20px;font-family:Montserrat-SemiBold;letter-spacing:2px">
       <span style="color:#03424E">PREGUNTAS </span><br> FRECUENTES
@@ -287,14 +287,14 @@
   </h4>
   <div class="subrayado mx-auto " style="margin-top:-13px"></div>
     <div class="row  justify-content-center mt-md-5 mt-4 ">
-      
+
 
         <!-- Preguntas frecuentes (acordeón) -->
         <div class="col-md-7 container text-center align-content-center justify-content-center">
-          
+
           <div class="accordion " id="faqAccordion">
             <!-- Pregunta 1 -->
-           
+
             <div class="accordion-item border rounded-3 mb-0 ">
                 <h2 class="accordion-header pt-4">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="background-color: white; box-shadow: none; border-radius: 10px; background-image: none !important; padding-right: 10px;">
@@ -323,12 +323,12 @@
                   </div>
               </div>
           </div>
-          
+
         </div>
         </div>
 
         <!-- Tarjeta izquierda -->
-      
+
     </div>
 </div>
 </div>
@@ -352,14 +352,14 @@
 
 
 
-  
+
           <style>
             /* Ocultar flecha predeterminada de Bootstrap */
             .accordion-button::after {
                 display: none !important;
             }
         </style>
-  
+
 
 
 
@@ -369,8 +369,8 @@
 
     <script>
         // Inicializamos AOS
-      
-     
+
+
         function restartAOSForEffect(effect, interval) {
         setInterval(function () {
           // Seleccionar elementos con el data-aos deseado y quitar la clase de animación
@@ -393,5 +393,5 @@
       </script>
 
 
-    
+
 @endsection

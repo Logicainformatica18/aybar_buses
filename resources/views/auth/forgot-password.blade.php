@@ -14,7 +14,7 @@
   <!-- Core Css -->
   <link rel="stylesheet" href="../../assets/css/styles.css" />
 
-  <title>Aybar Corp</title>
+  <title>Nuevo Huaral</title>
 </head>
 
 <body>
@@ -40,7 +40,7 @@
                           <img src="{{asset('ayba/1.png')}}"width="50px" class="dark-logo" alt="Logo-Dark" />
                         </a>
                         <p class="text-muted">Por favor ingrese la dirección de correo electrónico asociada con su cuenta y le enviaremos un enlace para restablecer su contraseña.</p>
-                    
+
                         @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -51,19 +51,19 @@
                           <div class="mb-3">
                             <label for="text-email" class="form-label">Email :</label>
                             <input id="email" type="email"id="text-email" placeholder="Ingresa tu Email"  class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                        
+
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                           
+
                           </div>
                           <button type="submit" class="btn btn-dark w-100 py-8 mb-4 rounded-1">
                             {{ __('Enviar enlace de restablecimiento de contraseña') }}
                         </button>
-                        
-                         
+
+
                           <a href="../../login" class="btn bg-primary-subtle text-primary w-100 py-8 mb-4 rounded-1">Regresa al login</a>
 
                         </form>
@@ -79,7 +79,7 @@
                 <div class="col-xl-6 d-none d-xl-block"style="background-image:url('{{asset('resource/1734104450_bg.png')}}')">
                   <div class="row justify-content-center align-items-center h-100 pb-5">
                     <div class="col-lg-9">
-                    
+
 
                     </div>
                   </div>

@@ -6,10 +6,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/jpg" href="{{ asset('ayba/favicon.png') }}" />
+    <link rel="icon" type="image/jpg" href="{{ asset('ayba/icono_nuevo_huaral.png') }}" />
     <!-- Core Css -->
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}" />
-    <title>AybarCorp</title>
+    <title>Nuevo Huaral</title>
     <!-- Owl Carousel  -->
     <link rel="stylesheet" href="{{ asset('assets/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/libs/aos/dist/aos.css') }}" />
@@ -97,21 +97,21 @@
 <body>
 
     <!-- Preloader -->
-    <div class="preloader"><img src="{{ asset('ayba/1.png') }}" alt="loader" class="lds-ripple img-fluid" /></div>
+    <div class="preloader"><img src="{{ asset('ayba/icono_nuevo_huaral.png') }}" alt="loader" class="lds-ripple img-fluid" /></div>
 
 
     <div id="main-wrapper flex-column">
 
 
         <!-- INICIO SECCION -->
-<header class="header fixed-header" id="mainHeader" style="  background-color: rgba(0, 0, 0, 0.8);">
+<header class="header" id="mainHeader" style="  background-color: rgba(0, 0, 0, 0.911);">
 
-   
-    <nav class="navbar navbar-expand-lg py-0">
+
+    <nav class="navbar   py-0">
         <div class="container">
 
-            <a data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" class="position-relative navbar-brand me-0 py-0 m-2 " href="/"> 
-                <img src="../resource/1738076896_logo%20aybar%20blanco.svg" alt="img-fluid" width="80px" style="margin-left:0%">
+            <a data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" class="position-relative navbar-brand me-0 py-0 m-2 " href="/">
+                <img src="{{asset('ayba/logo_nuevo_huaral.png')}}" alt="img-fluid" width="120px" style="margin-left:0%">
             </a>
 
             <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -125,144 +125,27 @@
                     <li class="nav-item" style="letter-spacing: 1px;"></li>
                     <li class="nav-item" style="letter-spacing: 1px;">
                         <a class="nav-link" aria-current="page" href="../" style="color: white">
-                            <b style="word-spacing: 9px;font-family: Montserrat-SemiBold;" id="inicio">INICIO</b>
-                        </a>
-                    </li>
-                    <li class="nav-item" style="letter-spacing: 1px;">
-                        <a class="nav-link" aria-current="page" href="../nosotros" style="color: white;word-spacing: 9px;font-family:Montserrat-Regular;"><b>
-                            <span style="font-family: Montserrat-SemiBold;" id="nosotros">NOSOTROS</span>
-                        </b></a>
-                    </li>
-                    <li class="nav-item" style="letter-spacing: 1px;">
-                        <a class="nav-link" aria-current="page" href="../proyectos" style="color: white;word-spacing: 9px;font-family:Montserrat-Regular;"><b>
-                            <span style="font-family: Montserrat-SemiBold;" id="proyectos">PROYECTOS</span>
-                        </b></a>
-                    </li>
-                    
-                    <li class="nav-item" style="letter-sblogs: 1px;">
-                        <a class="nav-link" aria-current="page" href="../blog" style="color: white">
-                            <b style="word-spacing: 9px;"><span style="font-family: Montserrat-SemiBold;" id="blog">BLOG</span></b>
-                        </a>                </li>
-                    <li class="nav-item" style="letter-spacing: 1px;">
-                        <a class="nav-link" aria-current="page" href="../contacto" style="color: white">
-                            <b style="word-spacing: 9px;"><span style="font-family: Montserrat-SemiBold;" id="contacto">CONTÁCTANOS</span></b>
+                            <b style="word-spacing: 9px;font-family: Montserrat-SemiBold;" id="inicio">Inscripción</b>
                         </a>
                     </li>
 
-                    <li class="nav-item ms-2" style="letter-spacing: 1px;">
-                        <a data-aos="fade-down" data-aos-delay="200" data-aos-duration="1000" class="btn btn-sm btn-hover-shadow fs-3 p-1" href="https://pagos.aybarcorp.com" style="color:white;font-family: Montserrat-SemiBold; border-radius:5px; background-color:#FFA726; width: 148px;">
-                            PAGA TU LOTE
-                        </a>
-                    </li>
-                    <li class="nav-item ms-2">
+
+
+                    {{-- <li class="nav-item ms-2">
                         <a data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" class="btn btn-sm btn-hover-shadow fs-4 p-1 " href="tel:+5101-9049838" style="color:white;font-family: Montserrat-SemiBold; border-radius:5px; background-color:rgb(19, 67, 77); width: 155px;color:#FFA726;">
-                            <i class="ti ti-brand-whatsapp fs-6">&nbsp;</i><span class="text-white">01-9049838 </span> 
+                            <i class="ti ti-brand-whatsapp fs-6">&nbsp;</i><span class="text-white">01-9049838 </span>
                         </a>
-                    </li>
-                    
- 
+                    </li> --}}
+
+
                 </ul>
             </div>
         </div>
     </nav>
 </header>
 @yield('content')
-<div class="container-fluid py-1" style="background-color: #054E5C; margin-top:-10px">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-5 col-lg-6 col-xl-4 justify-content-center text-lg-start text-md-start mt-10 aos-init aos-animate">
-                <h3 style="margin-top:30px; margin-left:0px; color:#FFA726;" class=" text-md-start  text-center"><span style="font-family: Montserrat;"></span>Contáctanos</h3>
-                <ul class="text-white mt-4" style="--bs-text-opacity: 1;">
-                    <li>
-                       
-                       
-                                    <img src="../resource/1738175771_679a751b0390btelefono.svg" class="note-float-left" style="width: 38.5px; height: 47.6503px;">
-                                    <br class=" d-sm-none">
-                                   
-                                    <span class="" style="color: rgba(var(--bs-white-rgb),var(--bs-text-opacity)); font-family: Montserrat-Regular; font-size: 14px; font-weight: var(--bs-body-font-weight);">
-                                        (51)
-                                        01-9049838</span>
-                        
-                                    
-                       
-                    </li>
-                    <li>
-                        <img src="../resource/1738175816_679a75485dd11ubicacion.svg" class=" note-float-left" style="width: 38.5px; height: 47.6503px; float: left;">
-                     
 
-                           
-                            Circunvalación Del Golf Los Incas Av. 134
-                         
-                            <br class=" d-sm-none">
-                                <span class="" style="color: rgba(var(--bs-white-rgb),var(--bs-text-opacity)); font-family: Montserrat-Regular; font-size: 14px; font-weight: var(--bs-body-font-weight);">
-                                Patio Panorama,&nbsp; Piso 19.&nbsp; Santiago de Surco.</span>
-                            <span style="color: rgba(var(--bs-white-rgb),var(--bs-text-opacity)); font-family: Montserrat-Regular; font-size: 14px; font-weight: var(--bs-body-font-weight);">
-                                </span>
-                    
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-sm-12 col-md-7 col-lg-6 col-xl-4 justify-content-center text-center text-lg-start text-md-end mt-10 aos-init aos-animate">
-                <h3 style="margin-top:30px; margin-left:0px; color:#FFA726;">Descubre más</h3>
-
-                <div class="row">
-                    <div class="col-6">
-                        <ul class="text-white mt-4">
-                            <li><a onmouseover="this.style.color='#FFA726'" onmouseout="this.style.color='white'" href="../" style="font-family: Montserrat, sans-serif; font-weight: var(--bs-body-font-weight); color: white;"><span style="font-family: Montserrat-Regular; font-size: 14px;">Inicio</span></a>
-                            </li>
-                            <li><a onmouseover="this.style.color='#FFA726'" onmouseout="this.style.color='white'" style="color:white" href="../../contacto"><span style="font-family: Montserrat-Regular; font-size: 14px;">Contáctanos</span></a>
-                            </li>
-                            <li><a onmouseover="this.style.color='#FFA726'" onmouseout="this.style.color='white'" style="color:white" href="../../nosotros"><span style="font-family: Montserrat-Regular; font-size: 14px;">Quiénes
-                                        somos</span></a></li>
-                            <li><a onmouseover="this.style.color='#FFA726'" onmouseout="this.style.color='white'" style="color:white" href="#"><span style="font-family: Montserrat-Regular; font-size: 14px;">Preguntas
-                                        frecuentes</span></a></li>
-
-
-                        </ul>
-                    </div>
-                    <div class="col-6">
-                        <ul class="text-white mt-4">
-                            <li><a onmouseover="this.style.color='#FFA726'" onmouseout="this.style.color='white'" style="color:white" href="../blog"><span style="font-family: Montserrat-Regular; font-size: 14px;">Blog</span></a>
-                            </li>
-                            <li><a onmouseover="this.style.color='#FFA726'" onmouseout="this.style.color='white'" style="color:white" href="../proyectos"><span style="font-family: Montserrat-Regular; font-size: 14px;">Proyectos</span></a>
-                            </li>
-                            <li><a onmouseover="this.style.color='#FFA726'" onmouseout="this.style.color='white'" style="color:white" href="#"><span style="font-family: Montserrat-Regular; font-size: 14px;">Términos y
-                                        condiciones</span></a></li>
-                            <li>
-                                <a style="color:white" onmouseover="this.style.color='#FFA726'" onmouseout="this.style.color='white'" href="libro_reclamaciones"><span style="font-family: Montserrat-Regular; font-size: 14px;">Libro de
-                                    reclamaciones</span>
-                                    <img src="../../resource/1738953712_67a653f0b65b8libro%20de%20reclamaciones.svg" width="20px" alt="" style="filter: invert(100%);">
-                                </a>
-                               </li>
-
-
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-5 text-center col-xl-4 col-lg-12 mt-lg-5 row align-content-center justify-content-center">
-                <div class="col-lg-3 col-xl-12 col-md-3 col-5 text-center">
-                    <a data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1000" href="../login" target="_blank" class="aos-init aos-animate"><img src="../ayba/4.png" width="85px" alt="" srcset="" style=""></a>
-                    </div>                        
-                <div class="col-lg-7 col-xl-12 col-md-7 col-6 aos-init aos-animate" data-aos="slide-up" data-aos-delay="300" data-aos-duration="1000">                     
-                
-               
-                <a href="https://www.facebook.com/aybarcorpoficial" target="_blank"> <img src="../resource/1738176383_679a777f397fdfacebook.svg" width="45px" alt="">
-                </a>
-                <a href="https://www.tiktok.com/@aybarcorpoficial" target="_blank"> <img src="../resource/1738176406_679a7796a9e96tiktok.svg" width="45px" alt="">
-                </a>
-                <a href="https://www.instagram.com/aybarcorpoficial/" target="_blank"> <img src="../resource/1738176389_679a77852f7d9instagram.svg" width="45px" alt="">
-                </a>
-                <a href="https://www.linkedin.com/company/aybarcorpoficial" target="_blank"> <img src="../resource/1738176399_679a778f7de17linkedin.svg" width="45px" alt=""></a>
-                    </div>   
-            </div>
-        </div>
-    </div>
-</div>
-<footer class="footer-part pt-4 pb-3 py-2" style="background-color:#13434d;">
+<footer class="footer-part pt-4 pb-3 py-2" style="background-color:#000000;">
 
             <div class="container">
                 <div class="justify-content-center">
@@ -272,10 +155,10 @@
 
                         <p class="mb-0 text-white">
                             <a class="d-none d-sm-none d-sm-block d-md-block d-lg-block  d-xl-block display-1 fs-4 text-white text-hover-primary  border-primary" href="https://anthonycode.com/" target="_blank">
-                                Copyright 2025, Aybar Corp&nbsp;&nbsp; | &nbsp;&nbsp; Todos los Derechos reservados
+                                Copyright 2025, Nuevo Huaral&nbsp;&nbsp; | &nbsp;&nbsp; Todos los Derechos reservados
                             </a>
                             <a class="d-sm-none  display-1 fs-2 text-center text-white text-hover-primary  border-primary" href="https://anthonycode.com/" target="_blank">
-                                Copyright 2025, Aybar Corp <br> Todos los Derechos reservados
+                                Copyright 2025, Nuevo Huaral <br> Todos los Derechos reservados
                             </a>
                         </p>
                     </div>
@@ -285,25 +168,14 @@
         </footer>
 <div class="offcanvas offcanvas-start matdash-lp-offcanvas" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="background-color: #000000e1">
     <div class="offcanvas-header p-4 text-center justify-content-center">
-        <img src="../../resource/1738076896_logo%20aybar%20blanco.svg" alt="matdash-img" class="img-fluid" width="150">
+        <img src="{{asset('ayba/logo_nuevo_huaral.png')}}" alt="matdash-img" class="img-fluid" width="150">
     </div>
     <div class="offcanvas-body ">
         <ul class="navbar-nav  flex-grow-1 text-white">
             <li class="nav-item mt-0 text-center">
-                <a class="nav-link fs-3  active" aria-current="page" href="/" id="inicio_2">Inicio</a>
+                <a class="nav-link fs-3  active" aria-current="page" href="/" id="inicio_2">Inscripciíon</a>
             </li>
-            <li class="nav-item mt-3 text-center">
-                <a class="nav-link fs-3  active" aria-current="page" href="../../nosotros" id="nosotros_2">Nosotros</a>
-            </li>
-            <li class="nav-item mt-3 text-center">
-                <a class="nav-link fs-3  active" aria-current="page" href="../../proyectos" id="proyectos_2">Proyectos</a>
-            </li>
-            <li class="nav-item mt-3 text-center">
-                <a class="nav-link fs-3  active" aria-current="page" href="../../blog" id="blogs_2">Blogs</a>
-            </li>
-            <li class="nav-item mt-3 text-center">
-                <a class="nav-link fs-3  active" aria-current="page" href="../../contacto" id="contacto_2">Contacto</a>
-            </li>
+
         </ul>
         <a href="../../login" class="btn  w-100 py-2 mt-2 text-white" style="background-color: #FFA726">Administrar</a>
         <br>
@@ -312,7 +184,7 @@
 </div>
 <!-- FIN SECCION -->
 <!-- Agrega este código dentro del <body> de tu página -->
- 
+
     {{-- <div class="whatsapp-container">
         <div class="whatsapp-message">
             ¿Necesitas ayuda?
@@ -446,16 +318,16 @@
 
         {{-- <a href="https://chatgpt.com/g/g-677d6c87f59481919ce07cf6c74af1d8-asistente-aybar-corp" target="_blank">
 <div id="chatbot-container" >
-   
+
         <div id="chatbot-label"style="background-color:#007bff;padding:10px;color:white;border-radius:30px">Soy tu asistente virtual
 
         </div>
-        
+
         <div id="chatbot-button">
             <img src="https://cdn-icons-png.flaticon.com/512/4712/4712101.png" alt="Chatbot">
         </div>
-  
-   
+
+
 </div>
 </a> --}}
 
@@ -601,7 +473,7 @@ $(document).ready(function () {
     // Función para reiniciar AOS en TODOS los elementos con atributos data-aos
     function restartAOS() {
         $("[data-aos!='flip-left']").removeClass("aos-animate"); // Quitar animación
-        
+
         setTimeout(() => {
             $("[data-aos]").addClass("aos-animate"); // Volver a agregar animación
             AOS.refreshHard(); // Refrescar AOS para que vuelva a aplicar los efectos

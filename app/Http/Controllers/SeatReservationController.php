@@ -35,6 +35,7 @@ class SeatReservationController extends Controller
         ]);
     }
 
+
     public function create()
     {
         $SeatReservation = SeatReservation::with('schedule.project', 'schedule.bus')
@@ -81,6 +82,59 @@ class SeatReservationController extends Controller
 
 }
 
+public function storePublic(Request $request)
+{
+    $request->validate([
+        'schedule_id' => 'required|exists:schedules,id',
+        'seat_number' => 'required|integer|min:1',
+        'customer_name' => 'required|string|max:255',
+    ]);
+
+    Log::info('Datos recibidos para reserva', $request->only(['schedule_id', 'seat_number', 'customer_name', 'dni', 'phone']));
+
+    $validate = SeatReservation::where('schedule_id', $request->schedule_id)
+        ->where('seat_number', $request->seat_number)
+        ->first();
+
+    if ($validate) {
+        Log::warning("Intento de reservar un asiento ya ocupado", [
+            'schedule_id' => $request->schedule_id,
+            'seat_number' => $request->seat_number,
+            'user_id' => Auth::id()
+        ]);
+
+        return abort(500, 'El asiento ya ha sido reservado');
+    }
+
+    try {
+        SeatReservation::create([
+            'schedule_id' => $request->schedule_id,
+            'seat_number' => $request->seat_number,
+            'customer_name' => $request->customer_name,
+            'dni' => $request->dni,
+            'phone' => $request->phone,
+            'user_id' => Auth::id(),
+        ]);
+
+        Log::info("Asiento reservado correctamente", [
+            'schedule_id' => $request->schedule_id,
+            'seat_number' => $request->seat_number,
+            'user_id' => Auth::id()
+        ]);
+    } catch (\Exception $e) {
+        Log::error("Error al crear reserva de asiento", [
+            'error' => $e->getMessage(),
+            'schedule_id' => $request->schedule_id,
+            'seat_number' => $request->seat_number,
+            'user_id' => Auth::id()
+        ]);
+
+        return abort(500, 'Error inesperado al guardar la reserva.');
+    }
+
+
+
+}
 
     public function edit(Request $request)
     {

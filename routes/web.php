@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\SeatReservationController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
@@ -35,12 +36,17 @@ Route::post('ScheduleStore', [App\Http\Controllers\ScheduleController::class, 's
 Route::post('ScheduleDestroy', [App\Http\Controllers\ScheduleController::class, 'destroy'])->middleware('permission:administrar');
 Route::post('ScheduleEdit', [App\Http\Controllers\ScheduleController::class, 'edit'])->middleware('permission:administrar');
 Route::post('ScheduleUpdate', [App\Http\Controllers\ScheduleController::class, 'update'])->middleware('permission:administrar');
+Route::post('ScheduleShow', [App\Http\Controllers\ScheduleController::class, 'showPublic']);
+
+
 
 Route::get('admin/reserva', [App\Http\Controllers\SeatReservationController::class, 'index'])->middleware('permission:administrar');
 Route::post('SeatReservationStore', [App\Http\Controllers\SeatReservationController::class, 'store'])->middleware('permission:administrar');
+Route::post('SeatReservationStorePublic', [App\Http\Controllers\SeatReservationController::class, 'storePublic'])->middleware('permission:administrar');
 Route::post('SeatReservationDestroy', [App\Http\Controllers\SeatReservationController::class, 'destroy'])->middleware('permission:administrar');
 Route::post('SeatReservationEdit', [App\Http\Controllers\SeatReservationController::class, 'edit'])->middleware('permission:administrar');
 Route::post('SeatReservationUpdate', [App\Http\Controllers\SeatReservationController::class, 'update'])->middleware('permission:administrar');
+Route::get('/seat-map-public/{schedule_id}', [SeatReservationController::class, 'seatMapPublic'])->name('seat.map.public');
 
 Route::get('/schedule/{id}/seats', [App\Http\Controllers\SeatReservationController::class, 'seatMap'])->name('seat.map');
 
@@ -76,9 +82,7 @@ Route::get('proyectos/{description}', [App\Http\Controllers\ProjectController::c
 
    Route::get('blog/topicPublic', [App\Http\Controllers\TopicPublicController::class, 'index']);
 
-   Route::get('/', function () {
-    return redirect("login");
-});
+   Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/nosotros', function () {
     return view("production.3");
 });
