@@ -168,43 +168,70 @@
 
     <!-- Modal para Crear/Editar Reserva -->
     <div id="success-header-modal" class="modal fade" tabindex="-1" aria-labelledby="success-header-modalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header modal-colored-header bg-success text-white">
-                    <h4 class="modal-title text-white" id="success-header-modalLabel">Reserva de Asiento</h4>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="post" role="form" id="SeatReservation" name="SeatReservation"
-                        enctype="multipart/form-data">
-                        <input type="hidden" name="id" id="id">
-                        {{ csrf_field() }}
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header modal-colored-header bg-success text-white">
+                        <h4 class="modal-title text-white" id="success-header-modalLabel">Reserva de Asiento</h4>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="post" role="form" id="SeatReservation" name="SeatReservation"
+                            enctype="multipart/form-data">
+                            <input type="hidden" name="id" id="id">
+                            {{ csrf_field() }}
+                            <span>*Todos los campos son obligatorios.</span>
+                            <p></p>
+                            <input type="hidden" name="seat_number" id="seat_number">
+                            <input type="hidden" name="schedule_id" id="schedule_id">
 
-                        <input type="hidden" name="seat_number" id="seat_number">
-                        <input type="hidden" name="schedule_id" id="schedule_id">
+                            <div class="mb-3">
+                                <label>Nombre del Cliente:</label>
+                                <input type="text" name="customer_name" id="customer_name" class="form-control" required>
 
-                        <div class="mb-3">
-                            <label>Nombre del Cliente:</label>
-                            <input type="text" name="customer_name" id="customer_name" class="form-control" required>
+                                <label class="mt-2">DNI:</label>
+                                <input type="text" name="dni" id="dni" class="form-control">
+                                <br>
+                                <label class="mt-2">Teléfono:</label>
+                                <input type="text" name="phone" id="phone" class="form-control">
+                                <br>
+                                <label class="mt-2">Email:</label>
+                                <input type="email" name="email" id="email" class="form-control">
+                                <p></p>
+                                <div class="container align-content-center">
+                                    <div class="form-group row">
+                                        Fotografía
 
-                            <label class="mt-2">DNI:</label>
-                            <input type="text" name="dni" id="dni" class="form-control">
 
-                            <label class="mt-2">Teléfono:</label>
-                            <input type="text" name="phone" id="phone" class="form-control">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <input type="button" value="Guardar" class="btn bg-success-subtle text-success"
-                        onclick="SeatReservationStore()">
+
+                                        <input class="form-control" type="file" id="imgInp"
+                                            name="photo"onchange="readImage(this,'#blah');">
+
+
+
+                                    </div>
+                                    <div class="size-50">
+                                        <br>
+                                        <img id="blah" name="fotografia" src="https://placehold.co/150" alt="Tu imagen"
+                                            class="img-bordered" width="50%">
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="save-btn" class="btn bg-success-subtle text-success" onclick="SeatReservationStore()">
+                            Guardar
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
 
@@ -259,41 +286,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function SeatReservationStore() {
-  var formData = new FormData(document.getElementById("SeatReservation"));
+    const form = document.getElementById("SeatReservation");
+    const saveBtn = document.getElementById("save-btn");
 
-  axios.post("../SeatReservationStore", formData, {
-    headers: {
-      "Content-Type": "multipart/form-data"
-    }
-  }).then(function (response) {
-    // Actualizar la tabla
-    document.getElementById("mycontent").innerHTML = response.data;
-    datatable_load();
+    // Mostrar spinner
+    saveBtn.disabled = true;
+    saveBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Guardando...`;
 
-    alert("Registrado Correctamente");
+    const formData = new FormData(form);
 
-    if (lastClickedSeat) {
-      // Quitar clase de selección
-      lastClickedSeat.classList.remove("seat-selected");
+    axios.post("../SeatReservationStore", formData, {
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    }).then(function (response) {
+        alert("✅ Registrado correctamente");
 
-      // Marcar como ocupado
-      lastClickedSeat.classList.remove("seat-free");
-      lastClickedSeat.classList.add("seat-occupied");
+        if (lastClickedSeat) {
+            lastClickedSeat.classList.remove("seat-selected");
+            lastClickedSeat.classList.remove("seat-free");
+            lastClickedSeat.classList.add("seat-occupied");
+            lastClickedSeat.onclick = null;
+            lastClickedSeat = null;
+        }
 
-      // Desactivar clic
-      lastClickedSeat.onclick = null;
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = `Guardar`;
 
-      // Limpiar referencia
-      lastClickedSeat = null;
-    }
+    }).catch(function (error) {
+        console.error("❌ Error:", error);
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = `Guardar`;
 
-    // Cerrar modal
-   // bootstrap.Modal.getInstance(document.getElementById("success-header-modal")).hide();
-  }).catch(function (error) {
-    console.error(error);
-    alert("Error al guardar la reserva");
-  });
+        if (error.response && error.response.status === 500) {
+            alert("🚫 " + (error.response.data?.message || "El asiento ya ha sido reservado."));
+        } else {
+            alert("❌ Error inesperado al guardar la reserva.");
+        }
+    });
 }
+
 
       </script>
 

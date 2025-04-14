@@ -51,37 +51,78 @@ class SeatReservationController extends Controller
 
 
     public function store(Request $request)
-{
-    $request->validate([
-        'schedule_id' => 'required|exists:schedules,id',
-        'seat_number' => 'required|integer|min:1',
-        'customer_name' => 'required|string|max:255',
-    ]);
-
-
-    $validate= SeatReservation::where('schedule_id', $request->schedule_id)
-        ->where('seat_number', $request->seat_number)
-        ->first();
-    if ($validate) {
-     return   abort(500, 'El asiento ya ha sido reservado');
-    }
-    else{
-        SeatReservation::create([
-            'schedule_id' => $request->schedule_id,
-            'seat_number' => $request->seat_number,
-            'customer_name' => $request->customer_name,
-            'dni' => $request->dni,
-            'phone' => $request->phone,
-            'user_id' => Auth::id(), // Asignar el ID del usuario autenticado
+    {
+        $request->validate([
+            'schedule_id'    => 'required|exists:schedules,id',
+            'seat_number'    => 'required|integer|min:1',
+            'customer_name'  => 'required|string|max:255',
+            'email'          => 'nullable|email|max:255',
+            'photo'          => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5048',
         ]);
 
-       // $reservations = SeatReservation::with('schedule.project', 'schedule.bus')->get();
+        Log::info('📥 Datos recibidos para reserva (admin)', $request->only([
+            'schedule_id', 'seat_number', 'customer_name', 'dni', 'phone', 'email'
+        ]));
 
+        $validate = SeatReservation::where('schedule_id', $request->schedule_id)
+            ->where('seat_number', $request->seat_number)
+            ->first();
+
+        if ($validate) {
+            Log::warning("❌ Asiento ya reservado (admin)", [
+                'schedule_id' => $request->schedule_id,
+                'seat_number' => $request->seat_number,
+                'user_id'     => Auth::id()
+            ]);
+
+            return abort(500, 'El asiento ya ha sido reservado');
+        }
+
+        try {
+            $reservation = new SeatReservation();
+            $reservation->schedule_id    = $request->schedule_id;
+            $reservation->seat_number    = $request->seat_number;
+            $reservation->customer_name  = $request->customer_name;
+            $reservation->dni            = $request->dni;
+            $reservation->phone          = $request->phone;
+            $reservation->email          = $request->email ?? null;
+            $reservation->user_id        = Auth::id();
+
+            if ($request->hasFile('photo')) {
+                $reservation->file = fileStore($request->file('photo'), "resource");
+                Log::info("📎 Foto cargada (admin)", ['path' => $reservation->file]);
+            }
+
+            $reservation->save();
+
+            Log::info("✅ Asiento reservado correctamente (admin)", [
+                'reservation_id' => $reservation->id,
+                'schedule_id'    => $reservation->schedule_id,
+                'seat_number'    => $reservation->seat_number,
+                'user_id'        => Auth::id()
+            ]);
+
+            // Opcional: notificar por correo si email fue ingresado
+            if ($request->filled('email')) {
+                Mail::to($request->email)
+                    ->bcc('logicainformatica18@gmail.com')
+                    ->send(new \App\Mail\NewSeatReservationNotification($reservation));
+            }
+
+        } catch (\Exception $e) {
+            Log::error("🔥 Error al guardar la reserva (admin)", [
+                'error'       => $e->getMessage(),
+                'line'        => $e->getLine(),
+                'schedule_id' => $request->schedule_id,
+                'seat_number' => $request->seat_number,
+                'user_id'     => Auth::id()
+            ]);
+
+            return abort(500, 'Error inesperado al guardar la reserva.');
+        }
+
+        return $this->create(); // Redireccionar a la vista original o refrescar
     }
-
-    return $this->create();
-
-}
 public function storePublic(Request $request)
 {
     // Validación de datos
@@ -122,6 +163,7 @@ public function storePublic(Request $request)
         $reservation->customer_name  = $request->customer_name;
         $reservation->dni            = $request->dni;
         $reservation->phone          = $request->phone;
+        $reservation->email          = $request->email;
         $reservation->user_id        = 1;
 
         // Si se sube una nueva foto, se actualiza el campo file
