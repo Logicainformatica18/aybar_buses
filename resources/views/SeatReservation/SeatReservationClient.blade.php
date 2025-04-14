@@ -16,29 +16,30 @@
                 <div class="d-flex flex-column ps-2 border-start border-2 border-warning">
                     <div class="mb-3">
                         <div class="d-flex align-items-start">
-                            <span class="me-2 fw-bold text-dark">{{ $fecha }} {{ $hora }}</span>
+                            <span class="me-2 fw-bold text-dark">{{ $hora }}</span>
                             <div>
                                 <div class="d-flex align-items-center mb-1">
                                     <i class="bi bi-bus-front-fill text-dark me-1"></i>
                                     <span class="fw-bold">Embarque:</span>
-                                    <span class="ms-1 text-uppercase">Oficina Lima Norte</span>
+                                    <span class="ms-1 text-uppercase">Lima Norte</span>
                                 </div>
-                                <div class="text-muted small">Dirección</div>
                                 <div class="text-muted small"></div>
+                                <div class="text-muted small">{{ $fecha }}</div>
                             </div>
                         </div>
                     </div>
 
                     <div class="mb-2">
                         <div class="d-flex align-items-start">
-                            <span class="me-2 fw-bold text-dark"></span>
+                            <span class="me-2 fw-bold text-dark">{{ \Carbon\Carbon::parse($hora)->addHours(3)->format('H:i') }}
+                            </span>
                             <div>
                                 <div class="d-flex align-items-center mb-1">
                                     <i class="bi bi-geo-alt-fill text-dark me-1"></i>
                                     <span class="fw-bold">Destino:</span>
                                     <span class="ms-1 text-uppercase">{{ Str::upper($selectedSchedule->project->description) }}</span>
                                 </div>
-                                <div class="text-muted small">{{ $fecha }} {{ $hora }}</div>
+                                <div class="text-muted small">{{ $fecha }}</div>
                             </div>
                         </div>
                     </div>
