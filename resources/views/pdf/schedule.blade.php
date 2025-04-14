@@ -40,7 +40,7 @@
 
     <div class="bordered">
         <strong>Bus:</strong> {{ $selectedSchedule->schedule->bus->plate ?? '' }}<br>
-        <strong>Asientos:</strong> {{ $selectedSchedule->schedule->bus->seat_count ?? 'N/A' }}
+        <strong>Asiento:</strong> {{ $selectedSchedule->seat_number ?? 'N/A' }}
     </div>
 
     <div style="text-align: center">
