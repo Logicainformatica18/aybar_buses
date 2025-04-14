@@ -386,7 +386,7 @@ function SeatReservationStore() {
         saveBtn.innerHTML = `Guardar`;
         const mycontent_3 = document.getElementById("mycontent_3");
         const verificarBaseUrl = "../../verificar";
-        mycontent_3.innerHTML = `
+        mycontent_3.innerHTML = `   <p></p>
     <a download="comprobante.pdf"
        href="../generate-pdf/${response.data}" target='_blank'
        class="btn btn-primary">Descargar Comprobante - PDF</a>
