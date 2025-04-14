@@ -16,22 +16,22 @@
                 <div class="d-flex flex-column ps-2 border-start border-2 border-warning">
                     <div class="mb-3">
                         <div class="d-flex align-items-start">
-                            <span class="me-2 fw-bold text-dark">19:50</span>
+                            <span class="me-2 fw-bold text-dark">{{ $fecha }} {{ $hora }}</span>
                             <div>
                                 <div class="d-flex align-items-center mb-1">
                                     <i class="bi bi-bus-front-fill text-dark me-1"></i>
                                     <span class="fw-bold">Embarque:</span>
-                                    <span class="ms-1 text-uppercase">LIMA</span>
+                                    <span class="ms-1 text-uppercase">Oficina Lima Norte</span>
                                 </div>
                                 <div class="text-muted small">Dirección</div>
-                                <div class="text-muted small">{{ $fecha }} {{ $hora }}</div>
+                                <div class="text-muted small"></div>
                             </div>
                         </div>
                     </div>
 
                     <div class="mb-2">
                         <div class="d-flex align-items-start">
-                            <span class="me-2 fw-bold text-dark">06:50</span>
+                            <span class="me-2 fw-bold text-dark"></span>
                             <div>
                                 <div class="d-flex align-items-center mb-1">
                                     <i class="bi bi-geo-alt-fill text-dark me-1"></i>
