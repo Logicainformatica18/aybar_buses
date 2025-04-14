@@ -50,6 +50,7 @@ Route::get('/seat-map-public/{schedule_id}', [SeatReservationController::class, 
 
 Route::get('/schedule/{id}/seats', [App\Http\Controllers\SeatReservationController::class, 'seatMap'])->name('seat.map');
 
+Route::get('/reporte/{schedule_id}', [App\Http\Controllers\ScheduleController::class, 'report']);
 
 
 Route::get('admin/reclamaciones', [App\Http\Controllers\BookController::class, 'index']);
