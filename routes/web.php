@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\PdfController;
+
+Route::get('/generate-pdf/{schedule}', [PdfController::class, 'generate'])->name('pdf.generate');
+Route::get('verificar/{id}', [SeatReservationController::class, 'verify'])->name('verificar.schedule');
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

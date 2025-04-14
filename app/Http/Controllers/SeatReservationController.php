@@ -8,7 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Schedule;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Str;
+use Carbon\Carbon;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel;
+use Endroid\QrCode\RoundBlockSizeMode;
 class SeatReservationController extends Controller
 {
     public function index()
@@ -184,6 +190,7 @@ public function storePublic(Request $request)
         Mail::to($request->email)
             ->bcc('logicainformatica18@gmail.com')
             ->send(new \App\Mail\NewSeatReservationNotification($reservation));
+            return $reservation->id;
 
     } catch (\Exception $e) {
         Log::error("Error al crear reserva de asiento", [
@@ -223,4 +230,48 @@ public function storePublic(Request $request)
 
         return $this->create();
     }
+
+
+
+
+
+    public function verify($id)
+    {
+        $selectedSchedule = SeatReservation::with('schedule.project', 'schedule.bus')->find($id);
+
+        if (!$selectedSchedule) {
+            abort(404, 'Reserva no encontrada');
+        }
+
+        $fecha = Carbon::parse($selectedSchedule->schedule->date)->format('Y-m-d');
+        $hora = Carbon::parse($selectedSchedule->schedule->time)->format('H:i');
+
+        $verificationUrl = route('verificar.schedule', ['id' => $id]);
+
+        $qrCode = new QrCode(
+            data: $verificationUrl,
+            size: 200,
+            margin: 10,
+            encoding: new Encoding('UTF-8'),
+            errorCorrectionLevel: ErrorCorrectionLevel::High,
+            roundBlockSizeMode: RoundBlockSizeMode::Margin
+        );
+
+        $writer = new PngWriter();
+        $qrResult = $writer->write($qrCode);
+        $qrBase64 = base64_encode($qrResult->getString());
+
+        return view('pdf.schedule', [
+            'selectedSchedule' => $selectedSchedule,
+            'fecha' => $fecha,
+            'hora' => $hora,
+            'qrCode' => $qrBase64
+        ]);
+    }
+
+
+
+
+
+
 }
