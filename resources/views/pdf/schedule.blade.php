@@ -20,7 +20,12 @@
 </head>
 <body>
     <h2>Resumen de Visita</h2>
-
+    <div class="bordered">
+        <strong>Cliente:</strong> {{ $selectedSchedule->customer_name }}<br>
+        <strong>Dni:</strong> {{ $selectedSchedule->dni ?? 'No registrado' }} <br>
+        <strong>Teléfono:</strong> {{ $selectedSchedule->phone ?? 'No registrado' }} <br>
+        <strong>Email:</strong> {{ $selectedSchedule->email ?? 'No registrado' }}
+    </div>
     <div class="bordered">
         <strong>Embarque:</strong> LIMA<br>
         <strong>Fecha:</strong> {{ $fecha }}<br>
@@ -41,6 +46,10 @@
     <div style="text-align: center">
         <p class="small">Escanee para verificar la autenticidad</p>
         <img src="data:image/png;base64,{{ $qrCode }}" alt="QR Code" width="200" height="200">
+    </div>
+    <div class="bordered">
+        <strong>Fecha de Reserva :</strong> {{ $selectedSchedule->created_at }}<br>
+
     </div>
 </body>
 </html>
