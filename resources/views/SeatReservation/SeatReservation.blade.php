@@ -302,6 +302,7 @@ function SeatReservationStore() {
     }).then(function (response) {
         alert("✅ Registrado correctamente");
 
+
         if (lastClickedSeat) {
             lastClickedSeat.classList.remove("seat-selected");
             lastClickedSeat.classList.remove("seat-free");

@@ -356,7 +356,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
 function SeatReservationStore() {
     const form = document.getElementById("SeatReservation");
     const saveBtn = document.getElementById("save-btn");
@@ -374,32 +373,43 @@ function SeatReservationStore() {
     }).then(function (response) {
         alert("✅ Registrado correctamente");
 
+        // Marcar asiento como ocupado
         if (lastClickedSeat) {
-            lastClickedSeat.classList.remove("seat-selected");
-            lastClickedSeat.classList.remove("seat-free");
+            lastClickedSeat.classList.remove("seat-selected", "seat-free");
             lastClickedSeat.classList.add("seat-occupied");
             lastClickedSeat.onclick = null;
             lastClickedSeat = null;
         }
 
+        // ✅ Cerrar el modal correctamente con Bootstrap 5
+        const modalEl = document.getElementById("success-header-modal");
+        const modalInstance = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+        modalInstance.hide();
+
+        // 🧼 Limpiar el formulario y la imagen
+        form.reset();
+        document.getElementById("blah").src = "https://placehold.co/150";
+
+        // Restaurar botón
         saveBtn.disabled = false;
         saveBtn.innerHTML = `Guardar`;
+
+        // Mostrar comprobante PDF
         const mycontent_3 = document.getElementById("mycontent_3");
         const verificarBaseUrl = "../../verificar";
-        mycontent_3.innerHTML = `   <p></p>
-    <a download="comprobante.pdf"
-       href="../generate-pdf/${response.data}" target='_blank'
-       class="btn btn-primary">Descargar Comprobante - PDF</a>
-    <p></p>
-    <iframe
-        src="${verificarBaseUrl}/${response.data}"
-        width="100%"
-        height="100%"
-        style="border:none;">
-    </iframe>
-`;
-
-
+        mycontent_3.innerHTML = `
+            <p></p>
+            <a download="comprobante.pdf"
+               href="../generate-pdf/${response.data}" target="_blank"
+               class="btn btn-primary">Descargar Comprobante - PDF</a>
+            <p></p>
+            <iframe
+                src="${verificarBaseUrl}/${response.data}"
+                width="100%"
+                height="100%"
+                style="border:none;">
+            </iframe>
+        `;
 
     }).catch(function (error) {
         console.error("❌ Error:", error);

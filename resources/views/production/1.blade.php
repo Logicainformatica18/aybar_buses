@@ -29,7 +29,7 @@
     <script src="{{ asset('js/customer.js') }}"></script>
     <script src="{{ asset('js/Book.js') }}"></script>
     <script src="{{ asset('js/axios.min.js') }}"></script>
-    <script src="{{ asset('js/topic.js') }}"></script>
+
     <script src="{{ asset('js/function.js') }}"></script>
     <link href="{{ asset('css/template.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.2.0/build/css/intlTelInput.css">
@@ -435,7 +435,8 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
     {{-- <script src="../../assets/js/plugins/animation-init.js"></script> --}}
     <script src="../../assets/libs/aos/dist/aos.js"></script>
