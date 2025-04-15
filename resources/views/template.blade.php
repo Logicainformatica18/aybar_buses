@@ -33,7 +33,7 @@
     <script src="{{ asset('js/function.js') }}"></script>
     <script src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{ asset('js/Book.js') }}"></script>
-    <script src="{{ asset('js/seatreservation.js') }}"></script>
+    <script src="{{ asset('js/seatreservation_2.js') }}"></script>
     <script src="{{ asset('js/bus.js') }}"></script>
     <script src="{{ asset('js/schedule.js') }}"></script>
 </head>

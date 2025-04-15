@@ -10,6 +10,8 @@
       SeatReservation.customer_name.value = response.data["customer_name"];
       SeatReservation.dni.value = response.data["dni"];
       SeatReservation.phone.value = response.data["phone"];
+      SeatReservation.email.value = response.data["email"];
+      SeatReservation.detail.value = response.data["detail"];
     }).catch(console.log);
   }
 

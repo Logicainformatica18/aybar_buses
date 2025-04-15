@@ -201,10 +201,7 @@
                                 <p></p>
                                 <div class="container align-content-center">
                                     <div class="form-group row">
-                                        Fotografía
-
-
-
+                                       Comprobante de pago
                                         <input class="form-control" type="file" id="imgInp"
                                             name="photo"onchange="readImage(this,'#blah');">
 
@@ -218,7 +215,8 @@
                                     </div>
                                 </div>
 
-
+                                <label class="mt-2">Observaciones:</label> <span>Opcional</span>
+                                <textarea name="detail" id="detail" class="form-control"></textarea>
 
                             </div>
                         </form>

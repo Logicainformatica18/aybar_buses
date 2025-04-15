@@ -10,6 +10,7 @@
             <th>Comprobante</th>
             <th>Proyecto</th>
             <th>Bus</th>
+            <th>Asesor</th>
             <th>Fecha</th>
             <th>Hora</th>
         </tr>
@@ -53,6 +54,7 @@
                 <td><a href="../resource/{{$SeatReservations->file}}" download="{{$SeatReservations->customer_name}}">{{$SeatReservations->file}}</a></td>
                 <td>{{ $SeatReservations->schedule->project->description ?? '—' }}</td>
                 <td>{{ $SeatReservations->schedule->bus->description ?? '—' }}</td>
+                <td>{{ $SeatReservations->user->firstname }} {{ $SeatReservations->user->lastname }} {{ $SeatReservations->user->names }}</td>
                 <td>{{ $SeatReservations->schedule->date ?? '—' }}</td>
                 <td>{{ \Carbon\Carbon::parse($SeatReservations->schedule->time)->format('h:i A') ?? '—' }}</td>
             </tr>
