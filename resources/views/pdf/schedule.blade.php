@@ -42,7 +42,10 @@
         <strong>Bus:</strong> {{ $selectedSchedule->schedule->bus->plate ?? '' }}<br>
         <strong>Asiento:</strong> {{ $selectedSchedule->seat_number ?? 'N/A' }}
     </div>
-
+    <div class="bordered">
+        <strong>Asesor:</strong> {{ $selectedSchedule->user->firstname ?? '' }} {{ $selectedSchedule->user->lastname ?? '' }} {{ $selectedSchedule->user->names ?? '' }}<br>
+        <strong>Comentarios:</strong> {{ $selectedSchedule->detail ?? 'N/A' }}
+    </div>
     <div style="text-align: center">
         <p class="small">Escanee para verificar la autenticidad</p>
         <img src="data:image/png;base64,{{ $qrCode }}" alt="QR Code" width="200" height="200">

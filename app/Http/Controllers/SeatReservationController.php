@@ -92,6 +92,7 @@ class SeatReservationController extends Controller
             $reservation->dni            = $request->dni;
             $reservation->phone          = $request->phone;
             $reservation->email          = $request->email ?? null;
+            $reservation->detail          = $request->detail ?? null;
             $reservation->user_id        = Auth::id();
 
             if ($request->hasFile('photo')) {
@@ -170,6 +171,7 @@ public function storePublic(Request $request)
         $reservation->dni            = $request->dni;
         $reservation->phone          = $request->phone;
         $reservation->email          = $request->email;
+        $reservation->detail          = $request->detail ?? null;
         $reservation->user_id        = 1;
 
         // Si se sube una nueva foto, se actualiza el campo file
@@ -216,8 +218,8 @@ public function storePublic(Request $request)
         $SeatReservation->customer_name = $request->customer_name;
         $SeatReservation->dni = $request->dni;
         $SeatReservation->phone = $request->phone;
+        $SeatReservation->detail          = $request->detail ?? null;
         $SeatReservation->user_id = Auth::id();
-
         $SeatReservation->save();
 
         return $this->create();

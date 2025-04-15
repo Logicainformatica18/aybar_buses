@@ -224,12 +224,15 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post" role="form" id="SeatReservation" name="SeatReservation"
-                            enctype="multipart/form-data">
+                        <form action="" method="post" role="form" id="SeatReservation" name="SeatReservation" enctype="multipart/form-data">
                             <input type="hidden" name="id" id="id">
                             {{ csrf_field() }}
-                            <span>*Todos los campos son obligatorios.</span>
-                            <p></p>
+
+                            <!-- ✅ Mensaje de advertencia -->
+                            <div class="alert alert-warning p-2">
+                                <strong>Nota:</strong> El <strong>nombre</strong>, <strong>DNI</strong> y el <strong>comprobante de pago</strong> son <u>obligatorios</u>. Los demás campos son opcionales.
+                            </div>
+
                             <input type="hidden" name="seat_number" id="seat_number">
                             <input type="hidden" name="schedule_id" id="schedule_id">
 
@@ -238,38 +241,34 @@
                                 <input type="text" name="customer_name" id="customer_name" class="form-control" required>
 
                                 <label class="mt-2">DNI:</label>
-                                <input type="text" name="dni" id="dni" class="form-control">
+                                <input type="text" name="dni" id="dni" class="form-control" required>
+
                                 <br>
                                 <label class="mt-2">Teléfono:</label>
                                 <input type="text" name="phone" id="phone" class="form-control">
+
                                 <br>
                                 <label class="mt-2">Email:</label>
                                 <input type="email" name="email" id="email" class="form-control">
+
                                 <p></p>
                                 <div class="container align-content-center">
                                     <div class="form-group row">
-                                        Fotografía
-
-
-
-                                        <input class="form-control" type="file" id="imgInp"
-                                            name="photo"onchange="readImage(this,'#blah');">
-
-
-
+                                        <label>Comprobante de pago:</label>
+                                        <input class="form-control" type="file" id="imgInp" name="photo" required onchange="readImage(this,'#blah');">
                                     </div>
                                     <div class="size-50">
                                         <br>
-                                        <img id="blah" name="fotografia" src="https://placehold.co/150" alt="Tu imagen"
-                                            class="img-bordered" width="50%">
+                                        <img id="blah" name="fotografia" src="https://placehold.co/150" alt="Tu imagen" class="img-bordered" width="50%">
                                     </div>
                                 </div>
 
-
-
+                                <label class="mt-2">Observaciones:</label> <span>Opcional</span>
+                                <textarea name="detail" id="detail" class="form-control"></textarea>
                             </div>
                         </form>
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" id="save-btn" class="btn bg-success-subtle text-success" onclick="SeatReservationStore()">
                             Guardar
