@@ -76,6 +76,8 @@ class ScheduleController extends Controller
     public function destroy(Request $request)
     {
         $Schedule = Schedule::find($request->id);
+        // Eliminar las reservas asociadas a este horario
+        SeatReservation::where('schedule_id', $Schedule->id)->delete();
         $Schedule->delete();
 
         return $this->create();
