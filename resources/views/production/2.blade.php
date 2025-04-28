@@ -250,7 +250,15 @@
                                 <br>
                                 <label class="mt-2">Email:</label>
                                 <input type="email" name="email" id="email" class="form-control">
-
+                                <label class="mt-2">Asesor Comercial:</label>
+                                <input type="text" name="business_partnert_text" id="business_partnert_text" class="form-control">
+                                Paradero a Subir :
+                                <select name="whereabouts" id="whereabouts" class="form-control">
+                                    <option value="Oficina Mega plaza">Oficina Mega plaza</option>
+                                    <option value="Pro">Pro</option>
+                                    <option value="Tottus puente piedra">Tottus puente piedra</option>
+                                    <option value="Ancón">Ancón</option>
+                                </select>
                                 <p></p>
                                 <div class="container align-content-center">
                                     <div class="form-group row">

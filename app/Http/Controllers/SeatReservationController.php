@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Mail\NewSeatReservationNotification;
 use Illuminate\Support\Facades\Mail;
 use App\Models\SeatReservation;
@@ -15,6 +16,7 @@ use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\RoundBlockSizeMode;
+
 class SeatReservationController extends Controller
 {
     public function index()
@@ -29,11 +31,11 @@ class SeatReservationController extends Controller
 
         return view("SeatReservation.SeatReservation", compact("SeatReservation","schedules"));
     }
+
     public function seatMap($schedule_id)
     {
         $selectedSchedule = Schedule::with('bus', 'project')->findOrFail($schedule_id);
 
-        // Obtener asientos ya reservados para ese viaje
         $reservedSeats = SeatReservation::where('schedule_id', $schedule_id)->pluck('seat_number')->toArray();
 
         return view('SeatReservation.SeatReservation', [
@@ -41,7 +43,6 @@ class SeatReservationController extends Controller
             'reservedSeats' => $reservedSeats
         ]);
     }
-
 
     public function create()
     {
@@ -54,8 +55,6 @@ class SeatReservationController extends Controller
         return view("SeatReservation.SeatReservationtable", compact('SeatReservation'));
     }
 
-
-
     public function store(Request $request)
     {
         $request->validate([
@@ -63,11 +62,13 @@ class SeatReservationController extends Controller
             'seat_number'    => 'required|integer|min:1',
             'customer_name'  => 'required|string|max:255',
             'email'          => 'nullable|email|max:255',
+            'business_partnert_text' => 'nullable|string|max:255',
+            'whereabouts'    => 'nullable|string|max:255',
             'photo'          => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5048',
         ]);
 
         Log::info('📥 Datos recibidos para reserva (admin)', $request->only([
-            'schedule_id', 'seat_number', 'customer_name', 'dni', 'phone', 'email'
+            'schedule_id', 'seat_number', 'customer_name', 'dni', 'phone', 'email', 'business_partnert_text', 'whereabouts'
         ]));
 
         $validate = SeatReservation::where('schedule_id', $request->schedule_id)
@@ -86,14 +87,16 @@ class SeatReservationController extends Controller
 
         try {
             $reservation = new SeatReservation();
-            $reservation->schedule_id    = $request->schedule_id;
-            $reservation->seat_number    = $request->seat_number;
-            $reservation->customer_name  = $request->customer_name;
-            $reservation->dni            = $request->dni;
-            $reservation->phone          = $request->phone;
-            $reservation->email          = $request->email ?? null;
-            $reservation->detail          = $request->detail ?? null;
-            $reservation->user_id        = Auth::id();
+            $reservation->schedule_id = $request->schedule_id;
+            $reservation->seat_number = $request->seat_number;
+            $reservation->customer_name = $request->customer_name;
+            $reservation->dni = $request->dni;
+            $reservation->phone = $request->phone;
+            $reservation->email = $request->email ?? null;
+            $reservation->detail = $request->detail ?? null;
+            $reservation->business_partnert_text = $request->business_partnert_text ?? null;
+            $reservation->whereabouts = $request->whereabouts ?? null;
+            $reservation->user_id = Auth::id();
 
             if ($request->hasFile('photo')) {
                 $reservation->file = fileStore($request->file('photo'), "resource");
@@ -109,11 +112,10 @@ class SeatReservationController extends Controller
                 'user_id'        => Auth::id()
             ]);
 
-            // Opcional: notificar por correo si email fue ingresado
             if ($request->filled('email')) {
                 Mail::to($request->email)
                     ->bcc('luismiguelbermudez@aybarsac.com')
-                    ->send(new \App\Mail\NewSeatReservationNotification($reservation));
+                    ->send(new NewSeatReservationNotification($reservation));
             }
 
         } catch (\Exception $e) {
@@ -128,83 +130,82 @@ class SeatReservationController extends Controller
             return abort(500, 'Error inesperado al guardar la reserva.');
         }
 
-        return $this->create(); // Redireccionar a la vista original o refrescar
+        return $this->create();
     }
-public function storePublic(Request $request)
-{
-    // Validación de datos
-    $request->validate([
-        'schedule_id'    => 'required|exists:schedules,id',
-        'seat_number'    => 'required|integer|min:1',
-        'customer_name'  => 'required|string|max:255',
-        'email'          => 'required|email|max:255',
-        'photo'          => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5048', // Máximo ~5MB
-    ]);
 
-    // Log de los datos recibidos (excluyendo 'photo' por ser un archivo)
-    Log::info('Datos recibidos para reserva', $request->only([
-        'schedule_id', 'seat_number', 'customer_name', 'dni', 'phone', 'email'
-    ]));
-
-    // Verificar si el asiento ya está reservado
-    $validate = SeatReservation::where('schedule_id', $request->schedule_id)
-        ->where('seat_number', $request->seat_number)
-        ->first();
-
-    if ($validate) {
-        Log::warning("Intento de reservar un asiento ya ocupado", [
-            'schedule_id' => $request->schedule_id,
-            'seat_number' => $request->seat_number,
-            'user_id'     => 1 // o Auth::id() si aplica
+    public function storePublic(Request $request)
+    {
+        $request->validate([
+            'schedule_id'    => 'required|exists:schedules,id',
+            'seat_number'    => 'required|integer|min:1',
+            'customer_name'  => 'required|string|max:255',
+            'email'          => 'required|email|max:255',
+            'business_partnert_text' => 'nullable|string|max:255',
+            'whereabouts'    => 'nullable|string|max:255',
+            'photo'          => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5048',
         ]);
 
-        return abort(500, 'El asiento ya ha sido reservado');
-    }
+        Log::info('Datos recibidos para reserva (público)', $request->only([
+            'schedule_id', 'seat_number', 'customer_name', 'dni', 'phone', 'email', 'business_partnert_text', 'whereabouts'
+        ]));
 
-    try {
-        // Actualizar la reserva existente, identificada por $request->id
-        $reservation = new SeatReservation();
-        // falta esta línea:
-        $reservation->schedule_id = $request->schedule_id;
-        $reservation->seat_number    = $request->seat_number;
-        $reservation->customer_name  = $request->customer_name;
-        $reservation->dni            = $request->dni;
-        $reservation->phone          = $request->phone;
-        $reservation->email          = $request->email;
-        $reservation->detail          = $request->detail ?? null;
-        $reservation->user_id        = 1;
+        $validate = SeatReservation::where('schedule_id', $request->schedule_id)
+            ->where('seat_number', $request->seat_number)
+            ->first();
 
-        // Si se sube una nueva foto, se actualiza el campo file
-        if ($request->hasFile('photo')) {
-            $reservation->file = fileStore($request->file('photo'), "resource");
-            Log::info("Nueva foto cargada", ['path' => $reservation->file]);
+        if ($validate) {
+            Log::warning("Intento de reservar un asiento ya ocupado", [
+                'schedule_id' => $request->schedule_id,
+                'seat_number' => $request->seat_number,
+                'user_id'     => 1
+            ]);
+
+            return abort(500, 'El asiento ya ha sido reservado');
         }
 
-        $reservation->save();
+        try {
+            $reservation = new SeatReservation();
+            $reservation->schedule_id = $request->schedule_id;
+            $reservation->seat_number = $request->seat_number;
+            $reservation->customer_name = $request->customer_name;
+            $reservation->dni = $request->dni;
+            $reservation->phone = $request->phone;
+            $reservation->email = $request->email;
+            $reservation->detail = $request->detail ?? null;
+            $reservation->business_partnert_text = $request->business_partnert_text ?? null;
+            $reservation->whereabouts = $request->whereabouts ?? null;
+            $reservation->user_id = 1;
 
-        Log::info("Asiento reservado correctamente", [
-            'schedule_id' => $request->schedule_id,
-            'seat_number' => $request->seat_number,
-            'user_id'     => 1
-        ]);
+            if ($request->hasFile('photo')) {
+                $reservation->file = fileStore($request->file('photo'), "resource");
+                Log::info("Nueva foto cargada", ['path' => $reservation->file]);
+            }
 
-        // Enviar notificación por correo
-        Mail::to($request->email)
-            ->bcc('logicainformatica18@gmail.com')
-            ->send(new \App\Mail\NewSeatReservationNotification($reservation));
+            $reservation->save();
+
+            Log::info("Asiento reservado correctamente (público)", [
+                'schedule_id' => $request->schedule_id,
+                'seat_number' => $request->seat_number,
+                'user_id'     => 1
+            ]);
+
+            Mail::to($request->email)
+                ->bcc('luismiguelbermudez@aybarsac.com')
+                ->send(new NewSeatReservationNotification($reservation));
+
             return $reservation->id;
 
-    } catch (\Exception $e) {
-        Log::error("Error al crear reserva de asiento", [
-            'error'       => $e->getMessage(),
-            'schedule_id' => $request->schedule_id,
-            'seat_number' => $request->seat_number,
-            'user_id'     => 1
-        ]);
+        } catch (\Exception $e) {
+            Log::error("Error al crear reserva de asiento (público)", [
+                'error'       => $e->getMessage(),
+                'schedule_id' => $request->schedule_id,
+                'seat_number' => $request->seat_number,
+                'user_id'     => 1
+            ]);
 
-        return abort(500, 'Error inesperado al guardar la reserva.');
+            return abort(500, 'Error inesperado al guardar la reserva.');
+        }
     }
-}
 
     public function edit(Request $request)
     {
@@ -218,7 +219,9 @@ public function storePublic(Request $request)
         $SeatReservation->customer_name = $request->customer_name;
         $SeatReservation->dni = $request->dni;
         $SeatReservation->phone = $request->phone;
-        $SeatReservation->detail          = $request->detail ?? null;
+        $SeatReservation->detail = $request->detail ?? null;
+        $SeatReservation->business_partnert_text = $request->business_partnert_text ?? null;
+        $SeatReservation->whereabouts = $request->whereabouts ?? null;
         $SeatReservation->user_id = Auth::id();
         $SeatReservation->save();
 
@@ -232,10 +235,6 @@ public function storePublic(Request $request)
 
         return $this->create();
     }
-
-
-
-
 
     public function verify($id)
     {
@@ -270,10 +269,4 @@ public function storePublic(Request $request)
             'qrCode' => $qrBase64
         ]);
     }
-
-
-
-
-
-
 }
