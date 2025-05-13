@@ -11,6 +11,9 @@
             <th>Proyecto</th>
             <th>Bus</th>
             <th>Asesor</th>
+            <th>Punto de recogo</th>
+
+            <th>Fecha de registro</th>
             <th>Fecha</th>
             <th>Hora</th>
         </tr>
@@ -54,7 +57,9 @@
                 <td><a href="../resource/{{$SeatReservations->file}}" download="{{$SeatReservations->customer_name}}">{{$SeatReservations->file}}</a></td>
                 <td>{{ $SeatReservations->schedule->project->description ?? '—' }}</td>
                 <td>{{ $SeatReservations->schedule->bus->description ?? '—' }}</td>
-                <td>{{ $SeatReservations->user->firstname }} {{ $SeatReservations->user->lastname }} {{ $SeatReservations->user->names }}</td>
+                <td>{{ $SeatReservations->business_partnert_text}}</td>
+                <td>{{ $SeatReservations->whereabouts}}</td>
+                       <td>{{ $SeatReservations->created_at}}</td>
                 <td>{{ $SeatReservations->schedule->date ?? '—' }}</td>
                 <td>{{ \Carbon\Carbon::parse($SeatReservations->schedule->time)->format('h:i A') ?? '—' }}</td>
             </tr>

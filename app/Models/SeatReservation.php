@@ -14,7 +14,9 @@ class SeatReservation extends Model
         'phone',
         'user_id',
         'email',
-        'file'
+        'file',
+        'business_partner_text'
+
     ];
 
     public function schedule()
