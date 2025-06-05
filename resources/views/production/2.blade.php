@@ -317,7 +317,7 @@ function renderSeatMaps() {
         for (let i = 1; i <= totalSeats; i++) {
             const seat = document.createElement("div");
             seat.className = "seat";
-            seat.innerHTML = `${i}<br><small>s/. 12.00</small>`;
+            seat.innerHTML = `${i}<br><small>s/. 45.00</small>`;
 
             if (reservedSeats.includes(i)) {
                 seat.classList.add("seat-occupied");
